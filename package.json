@@ -6,8 +6,8 @@
   "author": "Munim Dibosh",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn.lock,./.babelrc --copy-files",
-    "start": "yarn build && node dist/index.js"
+    "build-server": "rimraf dist/ && babel ./src/server --out-dir dist/server/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn.lock,./.babelrc --copy-files",
+    "start-server": "yarn build-server && node dist/server/index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
