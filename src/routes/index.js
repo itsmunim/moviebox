@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
-/**
- All the routes defined in this dir will be referenced here.
- */
+let express = require('express');
+let router = express.Router();
+
+let files = require('./files');
+
+router.use('/explorer', files);
 module.exports = router;

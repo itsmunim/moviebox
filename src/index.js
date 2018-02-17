@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('combined'));
-app.use('/', routes);
+app.use('/api/', routes);
 
 let port = process.env.PORT || 8080;
 
