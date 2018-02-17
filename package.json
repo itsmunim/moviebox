@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn.lock,./.babelrc --copy-files",
-    "start": "yarn run build && node dist/index.js"
+    "start": "yarn build && node dist/index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
