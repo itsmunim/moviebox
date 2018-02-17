@@ -1,3 +1,4 @@
-/**
- All the controllers defined in this dir will be referenced here.
- */
+let files = require('./files');
+let exports = {};
+exports.files = files;
+module.exports = exports;
