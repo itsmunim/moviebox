@@ -6,9 +6,10 @@
   "author": "Munim Dibosh",
   "license": "MIT",
   "scripts": {
-    "build-server": "rimraf dist/ && babel ./src/server --out-dir dist/server/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn.lock,./.babelrc --copy-files",
+    "build-server": "rimraf dist/ && babel server/ --out-dir dist/server/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn.lock,./.babelrc --copy-files",
     "start-server": "yarn build-server && node dist/server/index.js",
-    "watch-server": "nodemon --watch src/server/ --exec 'yarn start-server'"
+    "watch-server": "nodemon --watch server/ --exec 'yarn start-server'",
+    "build-client": "webpack"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -18,8 +19,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "nodemon": "^1.15.0",
-    "rimraf": "^2.6.2"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "rimraf": "^2.6.2",
+    "webpack": "^3.11.0"
   }
 }
