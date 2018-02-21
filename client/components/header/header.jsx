@@ -3,7 +3,7 @@ import React from 'react';
 class Header extends React.Component {
   render () {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
         <a className="navbar-brand" href="#">Moviebox</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
           <span className="navbar-toggler-icon"></span>
