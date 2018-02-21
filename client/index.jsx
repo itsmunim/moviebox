@@ -1,9 +1,12 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 import React from 'react';
 import {render} from 'react-dom';
+import Header from './components/header/header.jsx';
 
 class App extends React.Component {
   render () {
-    return <h1>Moviebox</h1>;
+    return <Header/>;
   }
 }
 
