@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SideNav extends React.Component {
+class SideBar extends React.Component {
   render() {
     return (
       <nav className="col-md-2 d-none d-md-block bg-light sidebar">
@@ -28,4 +28,4 @@ class SideNav extends React.Component {
   }
 }
 
-export default SideNav;
+export default SideBar;
