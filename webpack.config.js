@@ -10,6 +10,10 @@ var config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/
+  },
   module : {
     loaders : [
       {

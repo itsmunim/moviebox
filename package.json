@@ -9,7 +9,8 @@
     "build-server": "rimraf dist/ && babel server/ --out-dir dist/server/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn.lock,./.babelrc --copy-files",
     "start-server": "yarn build-server && node dist/server/index.js",
     "watch-server": "nodemon --watch server/ --exec 'yarn start-server'",
-    "build-client": "webpack"
+    "build-client": "webpack",
+    "watch-client": "webpack --watch --progress"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
