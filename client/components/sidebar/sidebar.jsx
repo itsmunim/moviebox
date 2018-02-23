@@ -12,12 +12,12 @@ class SideBar extends React.Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="#">
+                <a className="nav-link" href="#">
                   Watch List
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="#">
+                <a className="nav-link" href="#">
                   Recently Added
                 </a>
               </li>

@@ -14,4 +14,13 @@
     overflow-x: hidden;
     overflow-y: auto;
   }
+
+  .nav-link {
+    font-weight: 500;
+    color: #333;
+
+    &.active {
+      color: #007bff;
+    }
+  }
 }
