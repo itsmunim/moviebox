@@ -43,6 +43,61 @@ var config = {
             }
           }
         ]
+      },
+      {
+        test: /\.(css)$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      },
+      // font-awesome font loading inspired by https://gist.github.com/Turbo87/e8e941e68308d3b40ef6
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "url-loader?limit=10000&mimetype=application/font-woff"
+          }
+        ]
+      },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "url-loader?limit=10000&mimetype=application/font-woff"
+          }
+        ]
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+          }
+        ]
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "file-loader"
+          }
+        ]
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "url-loader?limit=10000&mimetype=image/svg+xml"
+          }
+        ]
       }
     ]
   }
