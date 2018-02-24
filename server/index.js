@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 const morgan = require('morgan');
 
 let app = express();
@@ -11,6 +12,24 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('combined'));
 app.use('/api/', routes);
+
+// error handling
+app.use(function (err, req, res, next) {
+  if (!err) {
+    next();
+  }
+
+  console.error(err.stack);
+  res.status(500).send({
+    'message': 'Internal Server Error'
+  });
+});
+
+// serve client
+app.use(express.static(path.resolve('./')));
+app.get('/', function (req, res) {
+  res.sendFile(path.resolve('./index.html'));
+});
 
 let port = process.env.PORT || 8080;
 
