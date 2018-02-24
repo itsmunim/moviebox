@@ -11,3 +11,6 @@
 - `yarn watch::client`- runs webpack build in watch mode, any changes will rebuild the client
 - `yarn start:dev`- starts the server with compiled client and the client is available at 
 `localhost:8080/`
+
+
+**For more clarity please check out the package.json scripts section**
