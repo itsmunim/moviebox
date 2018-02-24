@@ -1,6 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap';
 import './index.scss';
+import 'bootstrap';
+
 import React from 'react';
 import {render} from 'react-dom';
 import Header from './components/header/header.jsx';
