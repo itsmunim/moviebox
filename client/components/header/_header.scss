@@ -22,4 +22,15 @@
       border-color: rgba(white, 0.1);
     }
   }
+
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        &.btn-settings {
+          padding-right: 1.5rem;
+          padding-left: 1.5rem;
+        }
+      }
+    }
+  }
 }
