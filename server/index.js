@@ -26,7 +26,7 @@ app.use(function (err, req, res, next) {
 });
 
 // serve client
-app.use(express.static(path.resolve('./')));
+app.use(express.static(path.resolve('./dist/client')));
 app.get('/', function (req, res) {
   res.sendFile(path.resolve('./index.html'));
 });
