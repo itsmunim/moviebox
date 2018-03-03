@@ -7,22 +7,17 @@ import './index.scss';
 
 import React from 'react';
 import {render} from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
+
+// components
 import Header from './components/header/header.jsx';
-import SideBar from './components/sidebar/sidebar.jsx';
+import Main from './components/main/main.jsx';
 
-class App extends React.Component {
-  render () {
-    return (
-      <div>
-        <Header/>
-        <div className="container-fluid">
-          <div className="row">
-            <SideBar/>
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
+const App = () => (
+  <div>
+    <Header/>
+    <Main/>
+  </div>
+);
 
-render(<App/>, document.getElementById('app'));
+render(<Router><App/></Router>, document.getElementById('app'));
