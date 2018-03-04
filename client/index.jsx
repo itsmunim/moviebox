@@ -13,11 +13,22 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import Header from './components/header/header.jsx';
 import Main from './components/main/main.jsx';
 
+// state management
+import {getStateManager} from './app.state/index';
+
+const stateManager = getStateManager();
+
 const App = () => (
   <div>
-    <Header/>
+    <Header stateManager={stateManager}/>
     <Main/>
   </div>
 );
 
-render(<Router><App/></Router>, document.getElementById('app'));
+const renderView = () => {
+  render(<Router><App/></Router>, document.getElementById('app'));
+};
+
+stateManager.subscribeToStateChange(renderView);
+
+renderView();
