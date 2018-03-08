@@ -1,0 +1,48 @@
+.settings-page {
+  padding: 0 20rem;
+
+  h4, h5, p, span {
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+
+  .page-title {
+    padding: 15px 20px;
+    border-bottom: 1px solid $color-border;
+
+    h4 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+  }
+
+  .settings-items {
+    padding: 0 20px;
+    width: 100%;
+
+    .settings-item {
+      padding: 20px 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-border;
+      }
+
+      .settings-item-wrapper {
+        h5 {
+          font-size: 1rem;
+          color: $color-text-primary;
+        }
+        p {
+          font-size: 0.75rem;
+          color: $color-text-secondary;
+        }
+      }
+    }
+  }
+}
