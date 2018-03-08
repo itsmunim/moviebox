@@ -5,9 +5,3 @@ const getStateManager = () => {
 };
 
 export {getStateManager};
-
-
-
-
-
-
