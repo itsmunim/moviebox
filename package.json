@@ -17,15 +17,18 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.4",
+    "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
     "classnames": "^2.2.5",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "fluent-ffmpeg": "^2.1.2",
     "jquery": "^3.3.1",
     "lodash": "^4.17.5",
     "morgan": "^1.9.0",
     "popper.js": "^1.12.9",
+    "recursive-readdir": "^2.2.2",
     "redux": "^3.7.2"
   },
   "devDependencies": {
