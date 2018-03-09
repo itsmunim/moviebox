@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/dibosh/moviebox.svg?branch=master)](https://travis-ci.org/dibosh/moviebox)
+
+### Moviebox
+
 #### Setup
 
 - `brew install yarn`- in macOSX
