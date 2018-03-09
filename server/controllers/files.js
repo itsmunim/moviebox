@@ -16,7 +16,6 @@ controller.getAll = (dirPath, excludePattern, includeHidden) => {
   return new Promise((resolve, reject) => {
     fs.readdir(currentDir, (err, files) => {
       if (err) {
-        console.log(err);
         return reject(err);
       }
 
@@ -36,7 +35,6 @@ controller.getAll = (dirPath, excludePattern, includeHidden) => {
 
             data.push(fileInfo);
           } catch (e) {
-            console.log(e);
             return reject(e);
           }
         });
