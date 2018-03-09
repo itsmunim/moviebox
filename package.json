@@ -8,13 +8,12 @@
   "scripts": {
     "build::server": "rimraf dist/server/ && babel server/ --out-dir dist/server/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn.lock,./.babelrc --copy-files",
     "start::server": "yarn build::server && node dist/server/index.js",
-    "watch::server": "nodemon --watch server/ --exec 'yarn start::server'",
+    "watch::server": "nodemon --watch server/ --exec 'yarn lint::server && yarn start::server'",
+    "lint::server": "eslint server/**/*.js",
     "build::client": "webpack --progress",
     "watch::client": "webpack --progress --watch",
-    "lint::client": "eslint client/**/*.jsx",
-    "lint::server": "eslint server/**/*.js",
     "start:dev": "concurrently \"yarn watch::client\" \"yarn watch::server\"",
-    "start:prod": "yarn build::server && yarn build::client && node dist/server/index.js"
+    "start:prod": "yarn lint::server && yarn build::server && yarn build::client && node dist/server/index.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.4",
@@ -39,6 +38,7 @@
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.9",
     "eslint": "^4.18.2",
+    "eslint-loader": "^2.0.0",
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.9",
     "http-status-codes": "^1.3.0",
