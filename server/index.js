@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
+const statusCodes = require('http-status-codes');
 
 let app = express();
 let routes = require('./routes/index');
@@ -20,7 +21,7 @@ app.use(function (err, req, res, next) {
   }
 
   console.error(err.stack);
-  res.status(500).send({
+  res.status(statusCodes.INTERNAL_SERVER_ERROR).send({
     'message': 'Internal Server Error'
   });
 });
