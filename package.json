@@ -11,6 +11,8 @@
     "watch::server": "nodemon --watch server/ --exec 'yarn start::server'",
     "build::client": "webpack --progress",
     "watch::client": "webpack --progress --watch",
+    "lint::client": "eslint client/**/*.jsx",
+    "lint::server": "eslint server/**/*.js",
     "start:dev": "concurrently \"yarn watch::client\" \"yarn watch::server\"",
     "start:prod": "yarn build::server && yarn build::client && node dist/server/index.js"
   },
@@ -30,11 +32,14 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.9",
+    "eslint": "^4.18.2",
+    "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.9",
     "node-sass": "^4.7.2",
     "nodemon": "^1.15.0",
