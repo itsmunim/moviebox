@@ -4,13 +4,13 @@ class HeaderState {
   static showSettings() {
     return {
       type: ActionTypes.HEADER__SETTINGS_OPEN
-    }
+    };
   }
 
   static hideSettings() {
     return {
       type: ActionTypes.HEADER__SETTINGS_CLOSE
-    }
+    };
   }
 
   static getCurrent(stateManager) {
