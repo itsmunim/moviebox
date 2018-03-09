@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "6.10.2"
+branches:
+  only:
+    - master
+before_script:
+  - npm install -g yarn
+  - yarn install
+script:
+  - yarn lint::client
+  - yarn lint::server
+  - yarn build::client
+  - yarn build::server
