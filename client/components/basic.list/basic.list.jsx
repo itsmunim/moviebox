@@ -7,7 +7,7 @@ class BasicList extends React.Component {
 
     let ItemComponent = props.itemComponent;
     this.listItems = props.items.map((item) =>
-      <ItemComponent item={item} key={JSON.stringify(item)}/>
+      <ItemComponent item={item} key={item.title || item.name}/>
     );
   }
 
