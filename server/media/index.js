@@ -7,8 +7,8 @@ let getMediaMetadata = function (filepath, callback) {
     }
     return callback(null, metadata['format']);
   });
-}
+};
 
 module.exports = {
   getMediaMetadata
-}
+};
