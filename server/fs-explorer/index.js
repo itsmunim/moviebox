@@ -5,7 +5,7 @@ const SUPPORTED_MEDIA = ['.mkv', '.mp4'];
 
 let scanForMedia = function (root, callback) {
   let ignoreFunc = function (file, stats) {
-    return !stats.isDirectory() && !SUPPORTED_MEDIA.includes(path.extname(file));
+    return !stats.isDirectory() && !SUPPORTED_MEDIA.includes(path.extname(file).toLowerCase());
   };
   recursiveReadDir(root, [ignoreFunc], (err, mediaFilePaths) => {
     if (err) {
