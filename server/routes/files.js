@@ -33,7 +33,7 @@ router.get('/media-files', (req, res) => {
         res.send(500).json({message: err.message});
         return;
       }
-      return res.json(results);
+      return res.status(statusCodes.INTERNAL_SERVER_ERROR).json(results);
     });
   });
 });
