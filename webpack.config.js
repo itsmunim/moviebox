@@ -6,6 +6,7 @@ var APP_DIR = path.resolve(__dirname, 'client');
 
 var config = {
   entry: APP_DIR + '/index.jsx',
+  devtool: 'source-map',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
