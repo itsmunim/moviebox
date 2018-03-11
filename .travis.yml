@@ -8,7 +8,6 @@ before_script:
   - npm install -g yarn
   - yarn install
 script:
-  - yarn lint::client
-  - yarn lint::server
   - yarn build::client
+  - yarn lint::server
   - yarn build::server
