@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build::server": "rimraf dist/server/ && babel server/ --out-dir dist/server/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log,./yarn.lock,./.babelrc --copy-files",
-    "start::server": "yarn build::server && node dist/server/index.js",
+    "start::server": "yarn build::server && DEBUG=moviebox:* node dist/server/index.js",
     "watch::server": "nodemon --watch server/ --exec 'yarn lint::server && yarn start::server'",
     "lint::server": "eslint server/**/*.js",
     "build::client": "webpack --progress",
@@ -22,6 +22,7 @@
     "bootstrap": "^4.0.0",
     "classnames": "^2.2.5",
     "cors": "^2.8.4",
+    "debug": "^3.1.0",
     "express": "^4.16.2",
     "fluent-ffmpeg": "^2.1.2",
     "jquery": "^3.3.1",

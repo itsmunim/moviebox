@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 const statusCodes = require('http-status-codes');
+const debug = require('./debugger').getDebugger('app');
 
 let app = express();
 let routes = require('./routes/index');
@@ -35,7 +36,7 @@ app.get('/*', function (req, res) {
 let port = process.env.PORT || 8080;
 
 let server = app.listen(port, function () {
-  console.log('Server started on port ' + port);
+  debug('Server started on port ' + port);
 });
 
 let connections = [];
@@ -44,17 +45,17 @@ process.on('SIGINT', shutDown);
 
 server.on('connection', (connection) => {
   connections.push(connection);
-  console.log('%s connections currently open', connections.length);
+  debug('%s connections currently open', connections.length);
   connection.on('close', function () {
     connections = connections.filter((curr) => { return curr !== connection; });
   });
 });
 
 function shutDown() {
-  console.log('Received kill signal, shutting down gracefully');
+  debug('Received kill signal, shutting down gracefully');
 
   server.close(() => {
-    console.log('Closed out remaining connections');
+    debug('Closed out remaining connections');
     process.exit(0);
   });
 
@@ -69,7 +70,7 @@ function shutDown() {
   }, 5000);
 
   setTimeout(() => {
-    console.error('Could not close connections in time, forcefully shutting down');
+    debug('Could not close connections in time, forcefully shutting down');
     process.exit(1);
   }, 10000);
 }
