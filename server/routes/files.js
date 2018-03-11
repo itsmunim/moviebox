@@ -23,14 +23,12 @@ router.get('/files', function (req, res) {
 router.get('/media-files', (req, res) => {
   fileExplorer.scanForMedia(req.query.path, (err, filepaths) => {
     if (err) {
-      res.status(statusCodes.INTERNAL_SERVER_ERROR).json({message: err.message});
-      return;
+      return res.status(statusCodes.INTERNAL_SERVER_ERROR).json({message: err.message});
     }
 
     async.map(filepaths, mediaProcessor.getMediaMetadata, (err, results) => {
       if (err) {
-        res.status(statusCodes.INTERNAL_SERVER_ERROR).json({message: err.message});
-        return;
+        return res.status(statusCodes.INTERNAL_SERVER_ERROR).json({message: err.message});
       }
       return res.status(statusCodes.OK).json(results);
     });
