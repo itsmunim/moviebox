@@ -3,6 +3,8 @@ let path = require('path'),
   os = require('os'),
   recursiveReadDir = require('recursive-readdir');
 
+const debug = require('../debugger').getDebugger('fs-explorer');
+
 const defaultExcludePattern = {
   HIDDEN_FILES: /^\..+$/
 };
@@ -46,10 +48,15 @@ let list = (dirPath, excludePattern, includeHidden) => {
 
 let scanForMedia = function (root, callback) {
   let ignoreFunc = function (file, stats) {
-    return !stats.isDirectory() && !SUPPORTED_MEDIA.includes(path.extname(file).toLowerCase());
+    let shouldIgnore = stats && stats.isDirectory && !stats.isDirectory() && !SUPPORTED_MEDIA.includes(path.extname(file).toLowerCase());
+    if (shouldIgnore) {
+      debug('Ignoring %s: %s', path.basename(file), file);
+    }
+    return shouldIgnore;
   };
   recursiveReadDir(root, [ignoreFunc], (err, mediaFilePaths) => {
     if (err) {
+      debug('File traverse error: %O', err);
       return callback(err);
     }
     return callback(null, mediaFilePaths);
