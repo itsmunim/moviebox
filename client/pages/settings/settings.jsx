@@ -1,10 +1,13 @@
 import React from 'react';
+import _ from 'lodash';
 
-import {BasicList, SettingsItem} from '../../components/components.jsx';
+import {BasicList, SettingsItem, Modal} from '../../components/components.jsx';
+import SettingsPageState from '../../app.state/states/settings';
 
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
+    this.stateManager = props.stateManager;
     this.settingsItems = [
       {
         title: 'Folders',
@@ -25,6 +28,14 @@ class SettingsPage extends React.Component {
     ];
   }
 
+  isFileExplorerModalVisible() {
+    return _.get(SettingsPageState.getCurrent(this.stateManager), 'fileExplorerModal.isVisible', false);
+  }
+
+  closeFileExplorerModal() {
+    this.stateManager.dispatchAction(SettingsPageState.hideFileExplorerModal());
+  }
+
   render () {
     return (
       <div>
@@ -37,6 +48,10 @@ class SettingsPage extends React.Component {
             <BasicList listClass={'settings-items'} itemComponent={SettingsItem} items={this.settingsItems}/>
           </div>
         </div>
+        <Modal title={'Select a root folder'}
+               isVisible={this.isFileExplorerModalVisible()} onModalClose={() => this.closeFileExplorerModal()}>
+
+        </Modal>
       </div>
     );
   }
