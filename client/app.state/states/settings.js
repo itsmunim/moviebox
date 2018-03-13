@@ -22,20 +22,18 @@ class SettingsPageState {
 
     switch (action.type) {
       case ActionTypes.SETTINGS_PAGE__FILE_EXPLORER_MODAL_OPEN:
-        return SettingsPageState.updateFileExplorerModalOpenState(newState, true);
+        return SettingsPageState.updateFileExplorerModalState(newState, {isVisible: true});
 
       case ActionTypes.SETTINGS_PAGE__FILE_EXPLORER_MODAL_CLOSE:
-        return SettingsPageState.updateFileExplorerModalOpenState(newState, false);
+        return SettingsPageState.updateFileExplorerModalState(newState, {isVisible: false});
 
       default:
         return previousState;
     }
   }
 
-  static updateFileExplorerModalOpenState(state, isOpen) {
-    let settingsNavState = state.settingsNav || {};
-    settingsNavState.isSelected = isSelected;
-    state.settingsNav = settingsNavState;
+  static updateFileExplorerModalState(state, updates) {
+    state.fileExplorerModal = Object.assign({}, state.fileExplorerModal, updates);
     return state;
   }
 }
