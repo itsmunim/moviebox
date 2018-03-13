@@ -7,7 +7,7 @@ class SettingsPageState {
     };
   }
 
-  static showFileExplorerModal() {
+  static hideFileExplorerModal() {
     return {
       type: ActionTypes.SETTINGS_PAGE__FILE_EXPLORER_MODAL_CLOSE
     };
