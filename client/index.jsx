@@ -21,7 +21,7 @@ const stateManager = getStateManager();
 const App = () => (
   <div>
     <Header stateManager={stateManager}/>
-    <Main/>
+    <Main stateManager={stateManager}/>
   </div>
 );
 

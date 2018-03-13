@@ -6,12 +6,19 @@ import HomePage from '../../pages/home/home.jsx';
 import SettingsPage from '../../pages/settings/settings.jsx';
 
 class Main extends React.Component {
-  render () {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
     return (
       <main>
         <Switch>
           <Route exact path='/' component={HomePage}/>
-          <Route path='/settings' component={SettingsPage}/>
+          <Route path='/settings'
+            render={() => (
+              <SettingsPage stateManager={this.props.stateManager}/>
+            )}/>
         </Switch>
       </main>
     );
