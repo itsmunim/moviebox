@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import {BasicList, SettingsItem, Modal} from '../../components/components.jsx';
+import {BasicList, SettingsItem, Modal, FileExplorer} from '../../components/components.jsx';
 import SettingsPageState from '../../app.state/states/settings';
 
 class SettingsPage extends React.Component {
@@ -16,7 +16,9 @@ class SettingsPage extends React.Component {
           {
             title: 'Add Folder',
             type: 'primary',
-            callback: () => {}
+            callback: () => {
+              this.stateManager.dispatchAction(SettingsPageState.showFileExplorerModal());
+            }
           }
         ]
       },
@@ -50,7 +52,7 @@ class SettingsPage extends React.Component {
         </div>
         <Modal title={'Select a root folder'}
                isVisible={this.isFileExplorerModalVisible()} onModalClose={() => this.closeFileExplorerModal()}>
-
+          <FileExplorer/>
         </Modal>
       </div>
     );
