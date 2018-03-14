@@ -44,3 +44,5 @@ class BaseHttpService {
     return request.then((resp) => { return resp.data; });
   }
 }
+
+export default BaseHttpService;

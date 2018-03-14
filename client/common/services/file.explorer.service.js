@@ -11,3 +11,5 @@ class FileExplorerService extends BaseHttpService {
       });
   }
 }
+
+export default FileExplorerService;
