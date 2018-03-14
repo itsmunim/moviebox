@@ -1,6 +1,6 @@
 class File {
   constructor(path, parentDir, isDir) {
-    this.name = path.replace(/^.*[\\/]/, '');
+    this.name = path !== '/' ? path.replace(/^.*[\\/]/, '') : path;
     this.extension = !isDir ? this.name.substr(this.name.lastIndexOf('.') + 1) : '';
     this.parent = parentDir;
     this.isDirectory = Boolean(isDir);
