@@ -58,7 +58,7 @@ router.get('/stream', (req, res) => {
     let chunkSize = (end - start) + 1;
     let mimeType = fileExplorer.getMimeType(filePath);
     if (!mimeType) {
-      return res.status(400).json({message: 'Unsupported video format'});
+      return res.status(statusCodes.BAD_REQUEST).json({message: 'Unsupported video format'});
     }
 
     let headers  = {
