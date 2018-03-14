@@ -67,7 +67,34 @@ let scanForMedia = function (root, callback) {
   });
 };
 
+let getMimeType = function (filePath) {
+  let mimeTypes = {
+    '.m3u': 'application/x-mpegurl',
+    '.m3u8': 'application/x-mpegurl',
+    '.3gp': 'video/3gpp',
+    '.mp4': 'video/mp4',
+    '.m4a': 'video/mp4',
+    '.m4p': 'video/mp4',
+    '.m4b': 'video/mp4',
+    '.m4r': 'video/mp4',
+    '.m4v': 'video/x-m4v',
+    '.m1v': 'video/mpeg',
+    '.ogg': 'video/ogg',
+    '.ogv': 'video/ogg',
+    '.mov': 'video/quicktime',
+    '.qt':  'video/quicktime',
+    '.webm': 'video/webm',
+    '.asf': 'video/ms-asf',
+    '.wmv': 'video/x-ms-wmv',
+    '.avi': 'video/x-msvideo',
+    '.flv': 'video/x-flv'
+  };
+
+  return mimeTypes[path.extname(path.basename(filePath)).toLowerCase()];
+};
+
 module.exports = {
   list,
-  scanForMedia
+  scanForMedia,
+  getMimeType
 };
