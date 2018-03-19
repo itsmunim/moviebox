@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 class File {
   constructor(path, parentDir, isDir) {
     this.path = path;
@@ -47,6 +49,26 @@ class FileTree {
 
   get previousNode() {
     return this._previous;
+  }
+
+  static createInstanceFromJSON(fileTreeJSON) {
+    if (_.isEmpty(fileTreeJSON)) {
+      return;
+    }
+
+    let fileTree = new FileTree();
+
+    if (_.has(fileTreeJSON, '_root')) {
+      fileTree.root = fileTreeJSON._root;
+    }
+
+    _.each(['_current', '_previous'], (key) => {
+      if (_.has(fileTreeJSON, key)) {
+        fileTree[key.replace('_', '') + 'Node'] = fileTreeJSON[key];
+      }
+    });
+
+    return fileTree;
   }
 }
 
