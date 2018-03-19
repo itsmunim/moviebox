@@ -33,12 +33,20 @@ class FileTree {
     return this._root;
   }
 
-  set selected(selected) {
-    this._selected = selected;
+  set currentNode(current) {
+    this._current = current;
   }
 
-  get selected() {
-    return this._selected;
+  get currentNode() {
+    return this._current;
+  }
+
+  set previousNode(previous) {
+    this._previous = previous;
+  }
+
+  get previousNode() {
+    return this._previous;
   }
 }
 
