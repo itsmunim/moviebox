@@ -20,6 +20,10 @@ class StateManager {
     return this._store.getState()[componentKey];
   }
 
+  getState() {
+    return this._store.getState();
+  }
+
   static getInstance() {
     if (StateManager.__instance) {
       return StateManager.__instance;
