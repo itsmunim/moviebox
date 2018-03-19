@@ -7,7 +7,6 @@ import SettingsPageState from '../../app.state/states/settings';
 class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
-    this.stateManager = props.stateManager;
     this.settingsItems = [
       {
         title: 'Folders',
@@ -17,7 +16,7 @@ class SettingsPage extends React.Component {
             title: 'Add Folder',
             type: 'primary',
             callback: () => {
-              this.stateManager.dispatchAction(SettingsPageState.showFileExplorerModal());
+              this.props.stateManager.dispatchAction(SettingsPageState.showFileExplorerModal());
             }
           }
         ]
@@ -31,11 +30,11 @@ class SettingsPage extends React.Component {
   }
 
   isFileExplorerModalVisible() {
-    return _.get(SettingsPageState.getCurrent(this.stateManager), 'fileExplorerModal.isVisible', false);
+    return _.get(SettingsPageState.getCurrent(this.props.stateManager), 'fileExplorerModal.isVisible', false);
   }
 
   closeFileExplorerModal() {
-    this.stateManager.dispatchAction(SettingsPageState.hideFileExplorerModal());
+    this.props.stateManager.dispatchAction(SettingsPageState.hideFileExplorerModal());
   }
 
   render () {
@@ -52,7 +51,7 @@ class SettingsPage extends React.Component {
         </div>
         <Modal title={'Select a root folder'}
                isVisible={this.isFileExplorerModalVisible()} onModalClose={() => this.closeFileExplorerModal()}>
-          <FileExplorer/>
+          <FileExplorer stateManager={this.props.stateManager}/>
         </Modal>
       </div>
     );

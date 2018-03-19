@@ -9,22 +9,21 @@ import HeaderState from '../../app.state/states/header';
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.stateManager = this.props.stateManager;
   }
 
   selectSettingsNav() {
-    this.stateManager.dispatchAction(HeaderState.showSettings());
+    this.props.stateManager.dispatchAction(HeaderState.showSettings());
   }
 
   unSelectSettingsNav() {
-    this.stateManager.dispatchAction(HeaderState.hideSettings());
+    this.props.stateManager.dispatchAction(HeaderState.hideSettings());
   }
 
   get settingsNavCSSClasses() {
     return classNames({
       'nav-link': true,
       'btn-settings': true,
-      'active': _.get(HeaderState.getCurrent(this.stateManager), 'settingsNav.isSelected', false)
+      'active': _.get(HeaderState.getCurrent(this.props.stateManager), 'settingsNav.isSelected', false)
     });
   }
 
