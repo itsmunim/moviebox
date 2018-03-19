@@ -18,6 +18,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.4",
     "async": "^2.6.0",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
     "classnames": "^2.2.5",
