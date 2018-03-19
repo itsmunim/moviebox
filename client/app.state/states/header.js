@@ -17,7 +17,7 @@ class HeaderState {
     return stateManager.getStateFor('header');
   }
 
-  static update(previousState, action) {
+  static reduce(previousState, action) {
     let newState = Object.assign({}, previousState);
 
     switch (action.type) {
@@ -28,7 +28,7 @@ class HeaderState {
         return HeaderState.updateSettingsNavIsSelected(newState, false);
 
       default:
-        return previousState;
+        return previousState || {};
     }
   }
 

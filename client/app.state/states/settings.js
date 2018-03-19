@@ -17,7 +17,7 @@ class SettingsPageState {
     return stateManager.getStateFor('settingsPage');
   }
 
-  static update(previousState, action) {
+  static reduce(previousState, action) {
     let newState = Object.assign({}, previousState);
 
     switch (action.type) {
@@ -28,7 +28,7 @@ class SettingsPageState {
         return SettingsPageState.updateFileExplorerModalState(newState, {isVisible: false});
 
       default:
-        return previousState;
+        return previousState || {};
     }
   }
 
