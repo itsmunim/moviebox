@@ -16,6 +16,10 @@ let list = (dirPath, excludePattern, includeHidden) => {
   let currentDir = dirPath || os.homedir();
   let data = [];
   return new Promise((resolve, reject) => {
+    if (!fs.lstatSync(currentDir).isDirectory()) {
+      return reject(new Error('Given path is not a valid directory.'));
+    }
+
     fs.readdir(currentDir, (err, files) => {
       if (err) {
         return reject(err);
