@@ -33,7 +33,7 @@ class HeaderState {
   }
 
   static updateSettingsNavIsSelected(state, isSelected) {
-    let settingsNavState = state.settingsNav || {};
+    let settingsNavState = Object.assign({}, state.settingsNav);
     settingsNavState.isSelected = isSelected;
     state.settingsNav = settingsNavState;
     return state;
