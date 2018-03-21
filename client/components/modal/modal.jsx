@@ -6,7 +6,7 @@ class Modal extends React.Component {
   }
 
   getComponentClasses() {
-    let classes = ['modal', 'fade'];
+    let classes = ['modal'];
     if (this.props.isVisible) {
       classes.push('show');
       classes.push('backdrop-visible');
