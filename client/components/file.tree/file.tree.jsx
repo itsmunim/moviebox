@@ -11,14 +11,14 @@ class FileTree extends React.Component {
     return (
       <div className="file-tree">
         <h5 className="current-path">
-          {(this.fileTree.selected || this.fileTree.root).path}
+          {this.fileTree.currentNode.path}
         </h5>
         <div className="root-file d-flex flex-row">
           <i className="fas fa-folder-open mr-auto"></i>
-          {this.fileTree.root.name || this.fileTree.root.path}
+          {this.fileTree.currentNode.name || this.fileTree.currentNode.path}
         </div>
         <div className="files">
-          <BasicList itemComponent={FileItem} items={this.fileTree.root.files}/>
+          <BasicList itemComponent={FileItem} items={this.fileTree.currentNode.files}/>
         </div>
       </div>
     );
