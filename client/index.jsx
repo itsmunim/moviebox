@@ -7,6 +7,7 @@ import './index.scss';
 
 import React from 'react';
 import {render} from 'react-dom';
+import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 // components
@@ -14,21 +15,18 @@ import Header from './components/header/header.jsx';
 import Main from './components/main/main.jsx';
 
 // state management
-import {getStateManager} from './app.state/index';
-
-const stateManager = getStateManager();
+import store from './app.state/store';
 
 const App = () => (
   <div>
-    <Header stateManager={stateManager}/>
-    <Main stateManager={stateManager}/>
+    <Header/>
+    <Main/>
   </div>
 );
 
-const renderView = () => {
-  render(<Router><App/></Router>, document.getElementById('app'));
-};
-
-stateManager.subscribeToStateChange(renderView);
-
-renderView();
+render(
+  <Provider store={store}>
+    <Router><App/></Router>
+  </Provider>,
+  document.getElementById('app')
+);

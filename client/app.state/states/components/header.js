@@ -1,4 +1,4 @@
-import ActionTypes from '../action.types.js';
+import ActionTypes from '../../action.types.js';
 
 class HeaderState {
   static showSettings() {
@@ -13,19 +13,17 @@ class HeaderState {
     };
   }
 
-  static getCurrent(stateManager) {
-    return stateManager.getStateFor('header');
-  }
-
   static reduce(previousState, action) {
     let newState = Object.assign({}, previousState);
 
     switch (action.type) {
       case ActionTypes.HEADER__SETTINGS_OPEN:
-        return HeaderState.updateSettingsNavIsSelected(newState, true);
+        newState.isSettingsGearSelected = true;
+        return newState;
 
       case ActionTypes.HEADER__SETTINGS_CLOSE:
-        return HeaderState.updateSettingsNavIsSelected(newState, false);
+        newState.isSettingsGearSelected = false;
+        return newState;
 
       default:
         return previousState || {};
@@ -33,9 +31,7 @@ class HeaderState {
   }
 
   static updateSettingsNavIsSelected(state, isSelected) {
-    let settingsNavState = Object.assign({}, state.settingsNav);
-    settingsNavState.isSelected = isSelected;
-    state.settingsNav = settingsNavState;
+    state.settingsNav = Object.assign({}, state.settingsNav, {isSelected: isSelected});
     return state;
   }
 }

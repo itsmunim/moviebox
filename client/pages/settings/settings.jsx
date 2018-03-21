@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import _ from 'lodash';
 
 import {BasicList, SettingsItem, Modal, FileExplorer} from '../../components/components.jsx';
-import SettingsPageState from '../../app.state/states/settings';
+import SettingsPageState from '../../app.state/states/pages/settings';
 
 class SettingsPage extends React.Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class SettingsPage extends React.Component {
             title: 'Add Folder',
             type: 'primary',
             callback: () => {
-              this.props.stateManager.dispatchAction(SettingsPageState.showFileExplorerModal());
+              this.props.showFileExplorerModal();
             }
           }
         ]
@@ -30,11 +32,7 @@ class SettingsPage extends React.Component {
   }
 
   isFileExplorerModalVisible() {
-    return _.get(SettingsPageState.getCurrent(this.props.stateManager), 'fileExplorerModal.isVisible', false);
-  }
-
-  closeFileExplorerModal() {
-    this.props.stateManager.dispatchAction(SettingsPageState.hideFileExplorerModal());
+    return _.get(this.props.state, 'shouldShowFileExplorer', false);
   }
 
   render () {
@@ -50,12 +48,25 @@ class SettingsPage extends React.Component {
           </div>
         </div>
         <Modal title={'Select a root folder'}
-               isVisible={this.isFileExplorerModalVisible()} onModalClose={() => this.closeFileExplorerModal()}>
-          <FileExplorer stateManager={this.props.stateManager}/>
+               isVisible={this.isFileExplorerModalVisible()} onModalClose={() => this.props.closeFileExplorerModal()}>
+          <FileExplorer/>
         </Modal>
       </div>
     );
   }
 }
 
-export default SettingsPage;
+function mapStateToProps(state) {
+  return {
+    state: state.pages.settings
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    closeFileExplorerModal: SettingsPageState.hideFileExplorerModal,
+    showFileExplorerModal: SettingsPageState.showFileExplorerModal
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
