@@ -17,7 +17,7 @@ class Main extends React.Component {
           <Route exact path='/' component={HomePage}/>
           <Route path='/settings'
             render={() => (
-              <SettingsPage stateManager={this.props.stateManager}/>
+              <SettingsPage/>
             )}/>
         </Switch>
       </main>

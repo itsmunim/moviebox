@@ -8,10 +8,6 @@ class FileExplorerState {
     };
   }
 
-  static getCurrent(stateManager) {
-    return stateManager.getStateFor('components').fileExplorer;
-  }
-
   static reduce(previousState, action) {
     let newState = Object.assign({}, previousState);
 
