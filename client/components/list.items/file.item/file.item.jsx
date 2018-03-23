@@ -2,7 +2,7 @@ import React from 'react';
 
 class FileItem extends React.Component {
   getIconClass() {
-    return 'fas ' + (this.props.item.isDirectory ? 'fa-folder' : 'fa-file');
+    return 'fas ' + (this.props.item.isDirectory ? 'fa-folder' : 'fa-film');
   }
 
   render() {
