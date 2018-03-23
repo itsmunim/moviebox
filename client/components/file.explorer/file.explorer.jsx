@@ -11,24 +11,23 @@ import FileExplorerState from '../../app.state/states/components/file.explorer';
 class FileExplorer extends React.Component {
   constructor(props) {
     super(props);
-    let fileTreeState = this.props.state.fileTree;
-    this.fileTree = DataStructures.FileTree.createInstanceFromJSON(fileTreeState);
-    if (!this.fileTree) {
-      this.fileTree = new DataStructures.FileTree();
-      this.fileTree.root = new DataStructures.Directory('/');
-      this.fileTree.currentNode = this.fileTree.root;
-      this.populateRootOfFileTree();
+    if (!this.props.fileTree) {
+      this.populateFileTree('/');
     }
   }
 
-  populateRootOfFileTree() {
-    FileExplorerService.fetchFilesInPath(this.fileTree.root.path)
+  populateFileTree(rootPath) {
+    let fileTree = new DataStructures.FileTree();
+    fileTree.root = new DataStructures.Directory(rootPath);
+    fileTree.currentNode = fileTree.root;
+
+    FileExplorerService.fetchFilesInPath(fileTree.root.path)
       .then((files) => {
-        this.fileTree.root.files = _.map(files, (file) => {
+        fileTree.root.files = _.map(files, (file) => {
           let _objectCls = file.isDirectory ? DataStructures.Directory : DataStructures.File;
-          return new _objectCls(file.path, this.fileTree.root);
+          return new _objectCls(file.path, fileTree.root);
         });
-        this.props.updateVisibleFileTree(this.fileTree);
+        this.props.updateVisibleFileTree(fileTree);
       });
   }
 
@@ -43,7 +42,7 @@ class FileExplorer extends React.Component {
             </div>
           </div>
           <div className="container">
-            <FileTree fileTree={this.fileTree}/>
+            <FileTree fileTree={this.props.fileTree}/>
           </div>
         </div>
       </div>
@@ -52,8 +51,9 @@ class FileExplorer extends React.Component {
 }
 
 function mapStateToProps(state) {
+  let fileTreeJSON = state.components.fileExplorer.fileTree;
   return {
-    state: state.components.fileExplorer
+    fileTree: DataStructures.FileTree.createInstanceFromJSON(fileTreeJSON)
   };
 }
 

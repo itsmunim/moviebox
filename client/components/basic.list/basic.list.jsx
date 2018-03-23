@@ -1,20 +1,22 @@
 import React from 'react';
 
 class BasicList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.listClass = 'basic-list ' + props.listClass;
 
-    let ItemComponent = props.itemComponent;
-    this.listItems = props.items.map((item) =>
+  getListClass() {
+    return 'basic-list ' + this.props.listClass;
+  }
+
+  getListItems() {
+    let ItemComponent = this.props.itemComponent;
+    return this.props.items.map((item) =>
       <ItemComponent item={item} key={item.title || item.name}/>
     );
   }
 
   render() {
     return (
-      <ul className={this.listClass}>
-        { this.listItems }
+      <ul className={this.getListClass()}>
+        { this.getListItems() }
       </ul>
     );
   }
