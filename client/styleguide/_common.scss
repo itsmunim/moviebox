@@ -6,3 +6,11 @@ body {
   list-style: none;
   margin: 0;
 }
+
+.y-scrollable {
+  overflow-y: auto;
+}
+
+.max-h-400 {
+  max-height: 400px;
+}

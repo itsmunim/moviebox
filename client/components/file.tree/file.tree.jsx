@@ -21,12 +21,15 @@ class FileTree extends React.Component {
           <h5 className="current-path">
             {_.get(this.props.fileTree, 'currentNode.path', '')}
           </h5>
-          <div className="root-file d-flex flex-row">
-            <i className="fas fa-folder-open mr-auto"></i>
-            {_.get(this.props.fileTree, 'currentNode.name', _.get(this.props.fileTree, 'currentNode.path'))}
-          </div>
+          <p className="current-folder">
+            <i className="fas fa-folder-open"></i>
+            <span>
+              {_.get(this.props.fileTree, 'currentNode.name', _.get(this.props.fileTree, 'currentNode.path'))}
+            </span>
+          </p>
           <div className="files">
-            <BasicList itemComponent={FileItem} items={_.get(this.props.fileTree, 'currentNode.files', [])}/>
+            <BasicList listClass={'file-list max-h-400 y-scrollable'} itemComponent={FileItem}
+                       items={_.get(this.props.fileTree, 'currentNode.files', [])}/>
           </div>
         </ConditionalContainer>
       </div>

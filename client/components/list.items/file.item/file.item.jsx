@@ -9,7 +9,9 @@ class FileItem extends React.Component {
     return (
       <li className="file-item">
         <p>
-          <i className={this.getIconClass()}></i>
+          <span className="icon-holder">
+            <i className={this.getIconClass()}></i>
+          </span>
           <span>{this.props.item.name}</span>
         </p>
       </li>

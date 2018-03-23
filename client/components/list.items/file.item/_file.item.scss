@@ -1,0 +1,21 @@
+.file-item {
+  padding: 10px 15px;
+
+  &:hover {
+    background-color: $color-list-item-hover;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .icon-holder {
+    width: 24px;
+    text-align: left;
+    display: inline-block;
+
+    i {
+      color: #F4B350;
+    }
+  }
+}

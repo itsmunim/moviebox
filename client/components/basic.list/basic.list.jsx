@@ -1,9 +1,10 @@
 import React from 'react';
+import _ from 'lodash';
 
 class BasicList extends React.Component {
 
   getListClass() {
-    return 'basic-list ' + this.props.listClass;
+    return 'basic-list ' + _.get(this.props, 'listClass', '');
   }
 
   getListItems() {
