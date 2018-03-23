@@ -17,7 +17,7 @@ class Modal extends React.Component {
   render() {
     return (
       <div className={this.getComponentClasses()} onClick={() => this.props.onModalClose()}>
-        <div className="modal-dialog">
+        <div className="modal-dialog" onClick={(event) => event.stopPropagation() }>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">
