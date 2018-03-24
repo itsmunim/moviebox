@@ -51,6 +51,17 @@ class FileTree {
     return this._previous;
   }
 
+  static clone(fileTree) {
+    let cloned = new FileTree();
+    cloned.root = new Directory(fileTree.root.path, fileTree.root.parent);
+    cloned.currentNode = new Directory(fileTree.currentNode.path, fileTree.currentNode.parent);
+    if (fileTree.previousNode) {
+      cloned.previousNode = new Directory(fileTree.previousNode.path, fileTree.previousNode.parent);
+    }
+
+    return cloned;
+  }
+
   static createInstanceFromJSON(fileTreeJSON) {
     if (_.isEmpty(fileTreeJSON)) {
       return;
