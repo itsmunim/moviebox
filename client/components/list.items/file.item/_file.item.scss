@@ -1,5 +1,13 @@
 .file-item {
-  padding: 10px 15px;
+  padding: 10px;
+  cursor: pointer;
+
+  &.folder-type:hover {
+    .help-text {
+      opacity: 1;
+      height: 22px;
+    }
+  }
 
   &:hover {
     background-color: $color-list-item-hover;
@@ -17,5 +25,36 @@
     i {
       color: #F4B350;
     }
+  }
+
+  .mr-auto-0 {
+    margin: auto 0;
+  }
+
+  .btn-select-folder {
+    text-decoration: none;
+  }
+
+  .file-item-name {
+    font-size: 14px;
+    transition: font-size 0.3s;
+
+    &.folder-type {
+      span {
+        display: inline-block;
+        max-width: 280px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  .help-text {
+    @extend .text-muted;
+    height: 0;
+    opacity: 0;
+    transition: all 0.3s;
   }
 }
