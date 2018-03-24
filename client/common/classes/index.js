@@ -43,21 +43,10 @@ class FileTree {
     return this._current;
   }
 
-  set previousNode(previous) {
-    this._previous = previous;
-  }
-
-  get previousNode() {
-    return this._previous;
-  }
-
   static clone(fileTree) {
     let cloned = new FileTree();
     cloned.root = new Directory(fileTree.root.path, fileTree.root.parent);
     cloned.currentNode = new Directory(fileTree.currentNode.path, fileTree.currentNode.parent);
-    if (fileTree.previousNode) {
-      cloned.previousNode = new Directory(fileTree.previousNode.path, fileTree.previousNode.parent);
-    }
 
     return cloned;
   }
@@ -80,6 +69,19 @@ class FileTree {
     });
 
     return fileTree;
+  }
+
+  static getPathTraversalFromCurrentNode(fileTree) {
+    let traversal = [];
+    let currentNode = fileTree.currentNode;
+    traversal.push(currentNode);
+
+    while (currentNode.parent) {
+      traversal.push(currentNode.parent);
+      currentNode = currentNode.parent;
+    }
+
+    return traversal.reverse();
   }
 }
 
