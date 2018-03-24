@@ -18,7 +18,7 @@ class SettingsPage extends React.Component {
             title: 'Add Folder',
             type: 'primary',
             callback: () => {
-              this.props.showFileExplorerModal();
+              this.props.showFileExplorerModal('rootFolders');
             }
           }
         ]
@@ -26,7 +26,15 @@ class SettingsPage extends React.Component {
       {
         title: 'Exclude Folders',
         subtitle: 'Specify which Folders should be ignored during scan if they are present in selected Folder paths',
-        actions: []
+        actions: [
+          {
+            title: 'Add Folder',
+            type: 'primary',
+            callback: () => {
+              this.props.showFileExplorerModal('excludedFolders');
+            }
+          }
+        ]
       }
     ];
   }
@@ -35,8 +43,16 @@ class SettingsPage extends React.Component {
     return _.get(this.props.state, 'shouldShowFileExplorer', false);
   }
 
-  addToRootFolderList(folder) {
-    this.props.addToRootFolderList(folder);
+  addToFolderList(folder) {
+    let target = _.get(this.props.state, 'fileExplorerTarget', '');
+    if (!_.isEmpty(target)) {
+      if (target === 'rootFolders') {
+        this.props.addToRootFolderList(folder);
+      } else {
+        this.props.addToExcludeFolderList(folder);
+      }
+    }
+
     this.props.closeFileExplorerModal();
   }
 
@@ -54,7 +70,7 @@ class SettingsPage extends React.Component {
         </div>
         <Modal title={'Select a folder to scan for Movie files'}
                isVisible={this.isFileExplorerModalVisible()} onModalClose={() => this.props.closeFileExplorerModal()}>
-          <FileExplorer onFolderChoose={(folder) => this.addToRootFolderList(folder)}/>
+          <FileExplorer onFolderChoose={(folder) => this.addToFolderList(folder)}/>
         </Modal>
       </div>
     );
@@ -71,7 +87,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     closeFileExplorerModal: SettingsPageState.hideFileExplorerModal,
     showFileExplorerModal: SettingsPageState.showFileExplorerModal,
-    addToRootFolderList: SettingsPageState.addToRootFolderList
+    addToRootFolderList: SettingsPageState.addToRootFolderList,
+    addToExcludeFolderList: SettingsPageState.addToExcludeFolderList
   }, dispatch);
 }
 
