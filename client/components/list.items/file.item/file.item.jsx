@@ -17,7 +17,7 @@ class FileItem extends React.Component {
   render() {
     return (
       <li className={this.getFileItemClass()}
-          onDoubleClick={() => this.props.item.open(this.props.item)}>
+          onDoubleClick={() => this.props.item.open && this.props.item.open(this.props.item)}>
         <div className="d-flex flex-row justify-content-center">
           <div className="mr-auto">
             <p className={this.getFileNameClass()}>
@@ -33,7 +33,7 @@ class FileItem extends React.Component {
 
           <ConditionalContainer cls={'mr-auto-0'} if={this.props.item.isDirectory}>
             <a href="#" className="btn-select-folder text-primary"
-               onClick={() => this.props.item.select(this.props.item)}>
+               onClick={() => this.props.item.select && this.props.item.select(this.props.item)}>
               Select
             </a>
           </ConditionalContainer>
