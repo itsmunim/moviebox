@@ -7,6 +7,13 @@ class SettingsPageState {
     };
   }
 
+  static addToRootFolderList(folder) {
+    return {
+      type: ActionTypes.SETTINGS_PAGE__ADD_TO_ROOT_FOLDER_LIST,
+      payload: folder
+    };
+  }
+
   static hideFileExplorerModal() {
     return {
       type: ActionTypes.SETTINGS_PAGE__FILE_EXPLORER_MODAL_CLOSE
@@ -23,6 +30,10 @@ class SettingsPageState {
 
       case ActionTypes.SETTINGS_PAGE__FILE_EXPLORER_MODAL_CLOSE:
         newState.shouldShowFileExplorer = false;
+        return newState;
+
+      case ActionTypes.SETTINGS_PAGE__ADD_TO_ROOT_FOLDER_LIST:
+        newState.rootFolders = (newState.rootFolders || []).concat(action.payload);
         return newState;
 
       default:

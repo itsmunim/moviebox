@@ -35,6 +35,11 @@ class SettingsPage extends React.Component {
     return _.get(this.props.state, 'shouldShowFileExplorer', false);
   }
 
+  addToRootFolderList(folder) {
+    this.props.addToRootFolderList(folder);
+    this.props.closeFileExplorerModal();
+  }
+
   render () {
     return (
       <div>
@@ -47,9 +52,9 @@ class SettingsPage extends React.Component {
             <BasicList listClass={'settings-items'} itemComponent={SettingsItem} items={this.settingsItems}/>
           </div>
         </div>
-        <Modal title={'Select a root folder'}
+        <Modal title={'Select a folder to scan for Movie files'}
                isVisible={this.isFileExplorerModalVisible()} onModalClose={() => this.props.closeFileExplorerModal()}>
-          <FileExplorer/>
+          <FileExplorer onFolderChoose={(folder) => this.addToRootFolderList(folder)}/>
         </Modal>
       </div>
     );
@@ -65,7 +70,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     closeFileExplorerModal: SettingsPageState.hideFileExplorerModal,
-    showFileExplorerModal: SettingsPageState.showFileExplorerModal
+    showFileExplorerModal: SettingsPageState.showFileExplorerModal,
+    addToRootFolderList: SettingsPageState.addToRootFolderList
   }, dispatch);
 }
 
