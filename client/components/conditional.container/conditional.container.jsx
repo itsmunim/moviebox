@@ -1,15 +1,13 @@
 import React from 'react';
 
 class ConditionalContainer extends React.Component {
-  getDisplay() {
-    return this.props.if ? 'block' : 'none';
-  }
-
   render() {
+    let containerType = this.props.cType || 'div';
+    let ContainerTag = `${containerType}`;
     return (
-      <div style={{display: this.props.if ? 'block': 'none'}}>
+      <ContainerTag className={this.props.cls} style={{display: this.props.if ? 'block': 'none'}}>
         {this.props.children}
-      </div>
+      </ContainerTag>
     );
   }
 }
