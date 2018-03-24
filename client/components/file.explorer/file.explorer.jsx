@@ -12,20 +12,19 @@ class FileExplorer extends React.Component {
   constructor(props) {
     super(props);
     if (!this.props.fileTree) {
-      this.populateFileTree('/');
+      let fileTree = new DataStructures.FileTree();
+      fileTree.root = new DataStructures.Directory('/');
+      fileTree.currentNode = fileTree.root;
+      this.populateFiles(fileTree);
     }
   }
 
-  populateFileTree(rootPath) {
-    let fileTree = new DataStructures.FileTree();
-    fileTree.root = new DataStructures.Directory(rootPath);
-    fileTree.currentNode = fileTree.root;
-
-    FileExplorerService.fetchFilesInPath(fileTree.root.path)
+  populateFiles(fileTree) {
+    FileExplorerService.fetchFilesInPath(fileTree.currentNode.path)
       .then((files) => {
-        fileTree.root.files = _.map(files, (file) => {
+        fileTree.currentNode.files = _.map(files, (file) => {
           let _objectCls = file.isDirectory ? DataStructures.Directory : DataStructures.File;
-          return new _objectCls(file.path, fileTree.root);
+          return new _objectCls(file.path, fileTree.currentNode);
         });
         this.props.updateVisibleFileTree(fileTree);
       });
@@ -36,13 +35,12 @@ class FileExplorer extends React.Component {
       <div className="file-explorer-wrapper">
         <div className="file-explorer">
           <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Search folder by it's name"/>
-            <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="button">Search</button>
-            </div>
+            <input type="text" className="form-control" placeholder="Quick find inside this directory..."/>
           </div>
           <div className="container">
-            <FileTree fileTree={this.props.fileTree}/>
+            <FileTree fileTree={this.props.fileTree}
+                      onFileTreeUpdate={(updatedFileTree) => this.populateFiles(updatedFileTree)}
+                      onFolderChoose={(folder) => this.props.onFolderChoose(folder)}/>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 .file-tree {
   .current-folder {
+    margin-bottom: 5px;
+
     i.fas {
       display: inline-block;
       margin-right: 10px;
@@ -8,6 +10,12 @@
   }
 
   .file-list {
-    padding-left: 12px;
+    padding-left: 5px;
+  }
+
+  .current-path {
+    span.text-primary {
+      cursor: pointer;
+    }
   }
 }
