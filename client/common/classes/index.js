@@ -86,7 +86,7 @@ class FileTree {
 }
 
 class MovieInfo {
-  constructor(title, year, resolution, quality) {
+  constructor(title='', year='', resolution='', quality='') {
     this.title = title;
     this.year = year;
     this.resolution = resolution;
