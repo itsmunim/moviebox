@@ -86,11 +86,36 @@ class FileTree {
 }
 
 class MovieInfo {
-  constructor(title='', year='', resolution='', quality='') {
-    this.title = title;
-    this.year = year;
-    this.resolution = resolution;
-    this.quality = quality;
+  get resolution() {
+    return this._resolution;
+  }
+
+  set resolution(value) {
+    this._resolution = value;
+  }
+
+  get quality() {
+    return this._quality;
+  }
+
+  set quality(value) {
+    this._quality = value;
+  }
+
+  get year() {
+    return this._year;
+  }
+
+  set year(value) {
+    this._year = value;
+  }
+
+  get title() {
+    return this._title;
+  }
+
+  set title(value) {
+    this._title = value;
   }
 
   set poster(posterUrl) {
