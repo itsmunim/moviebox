@@ -85,4 +85,21 @@ class FileTree {
   }
 }
 
-export {File, Directory, FileTree};
+class MovieInfo {
+  constructor(title, year, resolution, quality) {
+    this.title = title;
+    this.year = year;
+    this.resolution = resolution;
+    this.quality = quality;
+  }
+
+  set poster(posterUrl) {
+    this._poster = posterUrl;
+  }
+
+  get poster() {
+    return this._poster;
+  }
+}
+
+export {File, Directory, FileTree, MovieInfo};
