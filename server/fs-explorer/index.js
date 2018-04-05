@@ -1,6 +1,7 @@
 let path = require('path'),
   fs = require('fs'),
   os = require('os'),
+  _ = require('lodash'),
   recursiveReadDir = require('recursive-readdir');
 
 const debug = require('../debugger').getDebugger('fs-explorer');
@@ -50,19 +51,32 @@ let list = (dirPath, excludePattern, includeHidden) => {
   });
 };
 
-let scanForMedia = function (root, callback) {
+/**
+ * Scan for movie files.
+ * @param {string} root Where the scan will begin
+ * @param {string} excludeDirs Comma separated name of dirs that resides any level in current root
+ * that should be excluded from scan.
+ * @param {function} callback
+ */
+let scanForMedia = function (root, excludeDirs, callback) {
+  let dirnamesToExclude = excludeDirs.split(',').map(name => name.trim());
+
   let ignoreFunc = function (file, stats) {
-    let shouldIgnore = stats && stats.isDirectory && !stats.isDirectory() && !SUPPORTED_MEDIA.includes(path.extname(file).toLowerCase());
-    if (shouldIgnore) {
+    let nonSupported = stats && !stats.isDirectory() && !SUPPORTED_MEDIA.includes(path.extname(file).toLowerCase());
+    let ignorableDir = stats && stats.isDirectory() && dirnamesToExclude && dirnamesToExclude.includes(path.basename(file));
+
+    if (ignorableDir || nonSupported) {
       debug('Ignoring %s: %s', path.basename(file), file);
     }
-    return shouldIgnore;
+    return ignorableDir || nonSupported;
   };
+
   recursiveReadDir(root, [ignoreFunc], (err, mediaFilePaths) => {
     if (err) {
       debug('File traverse error: %O', err);
       return callback(err);
     }
+
     return callback(null, mediaFilePaths);
   });
 };
@@ -82,7 +96,7 @@ let getMimeType = function (filePath) {
     '.ogg': 'video/ogg',
     '.ogv': 'video/ogg',
     '.mov': 'video/quicktime',
-    '.qt':  'video/quicktime',
+    '.qt': 'video/quicktime',
     '.webm': 'video/webm',
     '.asf': 'video/ms-asf',
     '.wmv': 'video/x-ms-wmv',
