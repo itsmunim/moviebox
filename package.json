@@ -33,7 +33,6 @@
     "morgan": "^1.9.0",
     "popper.js": "^1.12.9",
     "react-redux": "^5.0.7",
-    "recursive-readdir": "^2.2.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6"
   },

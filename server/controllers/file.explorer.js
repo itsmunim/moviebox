@@ -1,9 +1,8 @@
 let path = require('path'),
   fs = require('fs'),
   os = require('os'),
-  recursiveReadDir = require('recursive-readdir');
-
-const debug = require('../common').getDebugger('fs-explorer');
+  glob = require('globby'),
+  _ = require('lodash');
 
 const defaultExcludePattern = {
   HIDDEN_FILES: /^\..+$/
@@ -58,26 +57,21 @@ let list = (dirPath, excludePattern, includeHidden) => {
  * @param {function} callback
  */
 let scanForMedia = function (root, excludeDirs, callback) {
-  let dirnamesToExclude = excludeDirs.split(',').map(name => name.trim());
+  let dirnamesToIgnore = [];
 
-  let ignoreFunc = function (file, stats) {
-    let nonSupported = stats && !stats.isDirectory() && !SUPPORTED_MEDIA.includes(path.extname(file).toLowerCase());
-    let ignorableDir = stats && stats.isDirectory() && dirnamesToExclude && dirnamesToExclude.includes(path.basename(file));
+  if (!_.isEmpty(excludeDirs)) {
+    dirnamesToIgnore = excludeDirs.split(',').map(name => root + '/**/' + name.trim() + '/**');
+  }
 
-    if (ignorableDir || nonSupported) {
-      debug('Ignoring %s: %s', path.basename(file), file);
-    }
-    return ignorableDir || nonSupported;
-  };
+  let fileSearchGlobs = SUPPORTED_MEDIA.map(ext => root + '/**/*' + ext);
+  let filePaths = [];
 
-  recursiveReadDir(root, [ignoreFunc], (err, mediaFilePaths) => {
-    if (err) {
-      debug('File traverse error: %O', err);
-      return callback(err);
-    }
-
-    return callback(null, mediaFilePaths);
-  });
+  try {
+    filePaths = glob.sync(fileSearchGlobs, {ignore: dirnamesToIgnore});
+    return callback(null, filePaths);
+  } catch (err) {
+    return callback(err, filePaths);
+  }
 };
 
 let getMimeType = function (filePath) {
