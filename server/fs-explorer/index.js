@@ -1,7 +1,6 @@
 let path = require('path'),
   fs = require('fs'),
   os = require('os'),
-  _ = require('lodash'),
   recursiveReadDir = require('recursive-readdir');
 
 const debug = require('../debugger').getDebugger('fs-explorer');

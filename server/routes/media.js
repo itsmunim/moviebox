@@ -1,5 +1,4 @@
 let express = require('express');
-let async = require('async');
 let fs = require('fs');
 
 let router = express.Router();
@@ -67,7 +66,7 @@ router.get('/info', (req, res) => {
     }
 
     res.status(statusCodes.OK).json(movie);
-  })
+  });
 });
 
 module.exports = router;
