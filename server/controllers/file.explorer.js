@@ -3,7 +3,7 @@ let path = require('path'),
   os = require('os'),
   recursiveReadDir = require('recursive-readdir');
 
-const debug = require('../debugger').getDebugger('fs-explorer');
+const debug = require('../common').getDebugger('fs-explorer');
 
 const defaultExcludePattern = {
   HIDDEN_FILES: /^\..+$/

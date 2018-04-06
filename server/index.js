@@ -4,16 +4,15 @@ const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 const statusCodes = require('http-status-codes');
-const debug = require('./debugger').getDebugger('app');
+const debug = require('./common').getDebugger('app');
 
 let app = express();
-let routes = require('./routes/index');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(morgan('combined'));
-app.use('/api/', routes);
+app.use('/api/', require('./routes'));
 
 // error handling
 app.use(function (err, req, res, next) {
@@ -21,7 +20,7 @@ app.use(function (err, req, res, next) {
     next();
   }
 
-  console.error(err.stack);
+  debug('Error: %s %O', err.message, err.stack);
   res.status(statusCodes.INTERNAL_SERVER_ERROR).send({
     'message': 'Internal Server Error'
   });

@@ -3,8 +3,8 @@ let async = require('async');
 
 let router = express.Router();
 const statusCodes = require('http-status-codes');
-let fileExplorer = require('../fs-explorer');
-let mediaProcessor = require('../media');
+let fileExplorer = require('../controllers').fileExplorer;
+let mediaProcessor = require('../controllers').media;
 
 /**
  * Returns files and folders inside a given folder path or home directory as default.

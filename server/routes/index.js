@@ -1,9 +1,7 @@
 let express = require('express');
 let router = express.Router();
+let routes = require('../common').loadModule('routes');
 
-let files = require('./files');
-let media = require('./media');
-
-router.use('/explorer', files);
-router.use('/media', media);
+router.use('/explorer', routes.files);
+router.use('/media', routes.media);
 module.exports = router;
