@@ -3,7 +3,7 @@ import _ from 'lodash';
 class File {
   constructor(path, parentDir, isDir) {
     this.path = path;
-    this.name = path !== '/' ? path.replace(/^.*[\\/]/, '') : 'root';
+    this.name = path !== '/' ? path.replace(/^.*[\\/]/, '') : 'home';
     this.extension = !isDir ? this.name.substr(this.name.lastIndexOf('.') + 1) : '';
     this.parent = parentDir;
     this.isDirectory = Boolean(isDir);

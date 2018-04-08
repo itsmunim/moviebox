@@ -1,3 +1,4 @@
+let os = require('os');
 let express = require('express');
 let async = require('async');
 
@@ -10,7 +11,11 @@ let mediaProcessor = require('../lib').media;
  * Returns files and folders inside a given folder path or home directory as default.
  */
 router.get('/files', function (req, res) {
-  fileExplorer.list(req.query.path)
+  let path = req.query.path;
+  if (path === '/') {
+    path = os.homedir();
+  }
+  fileExplorer.list(path)
     .then((files) => {
       return res.status(statusCodes.OK).json(files);
     })
