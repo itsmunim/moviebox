@@ -1,3 +1,3 @@
 let loadModule = require('../common').loadModule;
 
-module.exports = loadModule('controllers');
+module.exports = loadModule('lib');
