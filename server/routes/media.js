@@ -1,5 +1,7 @@
 let express = require('express');
 let fs = require('fs');
+let os = require('os');
+let path = require('path');
 
 let router = express.Router();
 const statusCodes = require('http-status-codes');
@@ -11,7 +13,10 @@ let mediaProcessor = require('../lib').media;
  */
 router.get('/stream', (req, res) => {
   let filePath = req.query.path;
-  fs.stat(req.query.path, (err, stats) => {
+  if (!filePath) {
+    filePath = path.join(os.homedir(), 'big_buck_bunny.mp4');
+  }
+  fs.stat(filePath, (err, stats) => {
     if (err) {
       if (err.code == 'ENOENT') {
         return res.status(statusCodes.NOT_FOUND).json({message: 'File not found at path: ' + filePath});
