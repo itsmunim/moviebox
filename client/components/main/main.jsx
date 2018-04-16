@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 // pages
 import HomePage from '../../pages/home/home.jsx';
 import SettingsPage from '../../pages/settings/settings.jsx';
+import VideoPlayerPage from '../../pages/videoplayer/videoplayer.jsx';
+
 
 class Main extends React.Component {
   constructor(props) {
@@ -18,6 +20,10 @@ class Main extends React.Component {
           <Route path='/settings'
             render={() => (
               <SettingsPage/>
+            )}/>
+            <Route path='/video-player'
+            render={() => (
+              <VideoPlayerPage/>
             )}/>
         </Switch>
       </main>

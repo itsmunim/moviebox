@@ -21,6 +21,11 @@ class SideBar extends React.Component {
                   Recently Added
                 </a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/video-player">
+                  Video Player Demo
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
